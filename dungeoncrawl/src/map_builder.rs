@@ -83,7 +83,8 @@ impl MapBuilder {
         let dijkstra_map = DijkstraMap::new(
             SCREEN_WIDTH,
             SCREEN_HEIGHT,
-            &vec![mb.map.point2d_to_index(mb.player_start)],
+            // &vec![mb.map.point2d_to_index(mb.player_start)],
+            &[mb.map.point2d_to_index(mb.player_start)],
             &mb.map,
             1024.0
         );
