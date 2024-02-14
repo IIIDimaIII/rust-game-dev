@@ -14,6 +14,7 @@ pub struct Template {
     pub glyph: char,
     pub provides: Option<Vec<(String, i32)>>,
     pub hp: Option<i32>,
+    pub base_damage: Option<i32>,
 }
 
 #[derive(Clone, Deserialize, Debug, PartialEq)]
@@ -29,7 +30,7 @@ pub struct Templates {
 
 impl Templates {
     pub fn load() -> Self {
-        let file = File::open("D:/data/_edu/rust-handson/rust-game-dev/dungeoncrawl/resources/template.ron").expect("Failed to open file");
+        let file = File::open("resources/template.ron").expect("Failed to open file");
         from_reader(file).expect("Unable to load templates")
     }
 
@@ -97,6 +98,12 @@ impl Templates {
                     }
                 }
             });
+        }
+        if let Some(damage) = &template.base_damage {
+            commands.add_component(entity, Damage(*damage));
+            if template.entity_type == EntityType::Item {
+                commands.add_component(entity, Weapon{});
+            }
         }
     }
 }
