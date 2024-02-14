@@ -13,7 +13,8 @@ impl MapArchitect for DrunkardWalkArchitect {
             rooms : Vec::new(),
             monster_spawns : Vec::new(),
             player_start : Point::zero(),
-            amulet_start : Point::zero()
+            amulet_start : Point::zero(),
+            theme: super::themes::DungeonTheme::new()
         };
         mb.fill(TileType::Wall);
         let center = Point::new(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
